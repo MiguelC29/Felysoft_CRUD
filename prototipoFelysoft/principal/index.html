@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FELYSOFT</title>
+  <link rel="shortcut icon" href="imagenes/icon.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <section class="container-fluid">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="sidebar">
+          <a class="rounded" href="/principal/index.html">Venta</a>
+          <div class="dropdown">
+              <a class="rounded dropdown-toggle" href="#" role="button" id="dashboardDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dashboard
+              </a>
+              <ul id="dropdownSide" class="dropdown-menu" aria-labelledby="dashboardDropdown">
+                  <li><a id="sideList" class="dropdown-item" href="productos.html">Productos</a></li>
+                  <li><a id="sideList" class="dropdown-item" href="libros.html">Libros</a></li>
+              </ul>
+          </div>
+          <a class="rounded" href="/principal/404.html">Estadísticas</a>
+          <a class="rounded" href="#configuración">Configuración</a>
+          <img id="iconBar" class="icon" src="imagenes/icon.png" alt="">
+      </div>
+
+        <div class="content" style="width: 1200px;">
+          <header class="py-3 mb-3 border-bottom">
+            <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
+              
+
+              <div class="d-flex align-items-center">
+                <form class="w-100 me-3" role="search">
+                  <input id="buscar" type="search" class="form-control" placeholder="Buscar productos..."
+                    aria-label="Search">
+                </form>
+
+                <div class="flex-shrink-0 dropdown">
+                  <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <img id="user" src="imagenes/user.png" alt="mdo" width="55" height="55" class="rounded-circle">
+                  </a>
+                  <ul id="drop" class="dropdown-menu text-small shadow">
+                    <li><a class="dropdown-item" href="#">Ajustes</a></li>
+                    <li><a class="dropdown-item" href="/principal/500.html">Perfil</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="/login/index.html">Salir</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+              <div class="card h-100 w-100">
+                <img src="imagenes/chocorramo.jpg" class="card-img-top" alt="Producto 1">
+                <div class="card-body">
+                  <h5 class="card-title">Chocorramos Paquete</h5>
+                  <p class="card-text">Deliciosos chocorramos en un paquete. Perfectos para un snack rápido.</p>
+                  <p class="card-text">Precio: $2.500</p>
+                  <button class="btn btn-primary">Comprar</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="imagenes/galletas.png" class="card-img-top" alt="Producto 2">
+                <div class="card-body">
+                  <h5 class="card-title">Galletas de Chocolate</h5>
+                  <p class="card-text">Deliciosas galletas de chocolate para satisfacer tu dulce antojo.</p>
+                  <p class="card-text">Precio: $1.800</p>
+                  <button class="btn btn-primary">Comprar</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="imagenes/cocacola.png" class="card-img-top" alt="Producto 3">
+                <div class="card-body">
+                  <h5 class="card-title">Gaseosa Cola 500 ml</h5>
+                  <p class="card-text">Refrescante gaseosa de cola en botella de 500 ml.</p>
+                  <p class="card-text">Precio: $1.500</p>
+                  <button class="btn btn-primary">Comprar</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="imagenes/cuaderno.png" class="card-img-top" alt="Cuaderno Universitario">
+                <div class="card-body">
+                  <h5 class="card-title">Cuaderno Universitario</h5>
+                  <p class="card-text">Cuaderno de hojas rayadas tamaño universitario para tus apuntes.</p>
+                  <p class="card-text">Precio: $5.00</p>
+                  <button class="btn btn-primary">Comprar</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="imagenes/boligrafos.png" class="card-img-top" alt="Bolígrafos de Gel">
+                <div class="card-body">
+                  <h5 class="card-title">Bolígrafos de Gel</h5>
+                  <p class="card-text">Paquete de bolígrafos de gel en varios colores para escribir con suavidad.</p>
+                  <p class="card-text">Precio: $3.50</p>
+                  <button class="btn btn-primary">Comprar</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="imagenes/carpetas.png" class="card-img-top" alt="Carpetas de Archivo">
+                <div class="card-body">
+                  <h5 class="card-title">Carpetas de Archivo</h5>
+                  <p class="card-text">Conjunto de carpetas de archivo para mantener tus documentos organizados.</p>
+                  <p class="card-text">Precio: $7.99</p>
+                  <button class="btn btn-primary">Comprar</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div id="carrito" class="col-md-3">
+        <aside>
+          <div id="carritoCard" class="cardCar">
+            <img id="productosCard" src="imagenes/icon2.png" class="card-img-top" alt="productosCard">
+            <div class="card-body">
+              <h5 class="card-title">Carrito de Compras</h5>
+
+              <ul class="list-group list-group-flush" id="listaProductos">
+                <li class="list-group-item">Cuaderno Universitario - $15,000 COP</li>
+                <li class="list-group-item">Bolígrafos de Gel - $8,750 COP</li>
+                <li class="list-group-item">Carpetas de Archivo - $19,000 COP</li>
+                <li class="list-group-item">Lápices de Colores - $10,625 COP</li>
+                <li class="list-group-item">Goma de Borrar - $4,955 COP</li>
+                <li class="list-group-item">Regla de 30 cm - $6,875 COP</li>
+                <li class="list-group-item">Papel de Copia (500 hojas) - $23,975 COP</li>
+              </ul>
+
+              <div id="pagarBo" class="card-body">
+                <p class="card-text">Total: $16.49</p>
+                <button id="botonPagar" class="btn btn-primary">Pagar</button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
