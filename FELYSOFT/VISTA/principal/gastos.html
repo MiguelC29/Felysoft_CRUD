@@ -146,26 +146,28 @@
                         <h2>Registrar gasto</h2>
                         <form action="../../CONTROLADOR/insertGastos.php" method="post">
 
-                            <label for="precio">Fecha</label>
+                            <label for="fecha">Fecha</label>
                             <input type="date" id="fecha" name="fecha" class="form-control">
 
-                            <label for="precio">Monto</label>
+                            <label for="monto">Monto</label>
                             <input type="text" id="monto" name="monto" class="form-control">
 
-                            <label for="stock">Descripción</label>
+                            <label for="descripcion">Descripción</label>
                             <input type="text" id="descripcion" name="descripcion" class="form-control">
 
                             <label for="pago">Pago</label>
-                                        <select class="form-select" id="pago" name="pago" required>
-                                            <option selected>Seleccione la fecha del pago</option>
-                                            <option value="2901">2023-08-01 12:10:00</option>
-                                            <option value="2902">2023-08-05 14:35:00</option>
-                                            <option value="2903">2023-08-08 16:45:00</option>  
-                                        </select>
+                            <select class="form-select" id="pago" name="pago" required>
+                                <option selected>Seleccione la fecha del pago</option>
+                                <option value="2901">2023-08-01 12:10:00</option>
+                                <option value="2902">2023-08-05 14:35:00</option>
+                                <option value="2903">2023-08-08 16:45:00</option>  
+                            </select>
 
-                            <button type="submit" class="btn btn-success">Agregar</button>
-                        </form>
-                        <button id="cerrarFormulario" class="btn btn-danger">Cerrar</button>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success">Agregar</button>
+                                <button class="btn btn-danger" id="cerrarFormulario">Cerrar</button>
+                            </div>
+                        </form>    
                     </div>  
 
                 </div>
