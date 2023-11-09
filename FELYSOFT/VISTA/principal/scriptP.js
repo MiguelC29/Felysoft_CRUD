@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     cerrarFormulario.addEventListener('click', function () {
       document.body.removeChild(overlay);
       formularioAgregarProductos.style.display = 'none';
+      event.preventDefault();
     });
 
     newProductbtn.addEventListener('click', function () {
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
     closeForm.addEventListener('click', function () {
       document.body.removeChild(overlay);
       formAddProduct.style.display = 'none';
+      event.preventDefault();
     });
 
   });
