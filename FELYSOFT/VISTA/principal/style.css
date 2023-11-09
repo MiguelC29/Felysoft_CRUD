@@ -1,6 +1,6 @@
 .iconS{
-    width: 5rem;
-    margin-right: 6em;
+  width: 5rem;
+  margin-right: 6em;
 }
 
 #iconBar{
@@ -10,7 +10,7 @@
 }
 
 table{
-    background-color: #122a5c;
+  background-color: #122a5c;
 }
 
 .card{
@@ -62,61 +62,61 @@ table{
 }
 
 #buscar{
-    width: 1200px;
-    font-size: 1.5em;
-    border: 2px solid #122a5c;
+  width: 1200px;
+  font-size: 1.5em;
+  border: 2px solid #122a5c;
 }
 
 #productosCard{
-    width: 10em;
-    background-color: #122a5c;
+  width: 10em;
+  background-color: #122a5c;
 }
 
 #carrito{
-    padding-top: 130px;
+  padding-top: 130px;
 }
 
 #carritoCard{
-    height: 130vh;
+  height: 130vh;
 }
 
 .sidebar {
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    background-color: #122a5c;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
-    border: 2px solid #40567e;
-  }
-  
-  .sidebar a {
-    display: block;
-    color: #f3f3f3;
-    font-size: 1.3rem;
-    font-weight: bold;
-    margin: 5px;
-    padding: 16px;
-    text-decoration: none;
-    border: 2px solid #122a5c;
-  }
-  
-  .sidebar a.active {
-    background-color: #f3f3f3;
-    color: #122a5c;
-  }
-  
-  .sidebar a:hover:not(.active) {
-    background-color: #f3f3f3;
-    color: #122a5c;
-  }
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #122a5c;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  border: 2px solid #40567e;
+}
 
-  div.content {
-    margin-left: 200px;
-    padding: 1px 16px;
-    height: 1000px;
-  }
+.sidebar a {
+  display: block;
+  color: #f3f3f3;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 5px;
+  padding: 16px;
+  text-decoration: none;
+  border: 2px solid #122a5c;
+}
+
+.sidebar a.active {
+  background-color: #f3f3f3;
+  color: #122a5c;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #f3f3f3;
+  color: #122a5c;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
 
 #carritoCard {
   border: 1px solid #ccc;
@@ -205,7 +205,7 @@ table{
   margin-bottom: 10px;
 }
 
-.form-control {
+.form-control, .form-select{
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -215,19 +215,19 @@ table{
 }
 
 
-  @media screen and (max-width: 700px) {
-    .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
-    }
-    .sidebar a {float: left;}
-    div.content {margin-left: 0;}
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
   }
-  
-  @media screen and (max-width: 400px) {
-    .sidebar a {
-      text-align: center;
-      float: none;
-    }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
   }
+}
