@@ -43,11 +43,11 @@
                                     </a>
                                     <ul class="dropdown-menu text-small shadow">
                                         <li><a class="dropdown-item" href="#">Ajustes</a></li>
-                                        <li><a class="dropdown-item" href="/principal/500.html">Perfil</a></li>
+                                        <li><a class="dropdown-item" href="../VISTA/principal/500.html">Perfil</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="/login/index.html">Salir</a></li>
+                                        <li><a class="dropdown-item" href="../VISTA/login/index.html">Salir</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -76,41 +76,34 @@
                                 <td><button type="button" class="btn btn-danger">Eliminar</button></td>
                             </tr>
 
-                            <tr>
-                                <td>2</td>
-                                <td>Harry Potter y la Piedra Filosofal</td>
-                                <td>J.K. Rowling</td>
-                                <td>45,000</td>
-                                <td><button type="button" class="btn btn-success">Editar</button></td>
-                                <td><button type="button" class="btn btn-danger">Eliminar</button></td>
-                            </tr>
-
-                            <tr>
-                                <td>20</td>
-                                <td>Harry Potter y la Piedra Filosofal</td>
-                                <td>J.K. Rowling</td>
-                                <td>45,000</td>
-                                <td><button type="button" class="btn btn-success">Editar</button></td>
-                                <td><button type="button" class="btn btn-danger">Eliminar</button></td>
-                            </tr>
+                            
 
 
                         </tbody>
                     </table>
 
-                    <div id="formularioAgregarServicios" class="formulario-agregar-servicios" style="display: none;">
-                        <h2>Agregar Servicio</h2>
-                        <form>
-                            <label for="titulo">Nombre Servicio</label>
-                            <input type="text" id="titulo" class="form-control">
-                            <label for="autor">Descripción</label>
-                            <input type="text" id="autor" class="form-control">
+                    <div id="formularioAgregarServicios" class="formulario-agregar-servicios" style="display: none; width: 600px;">
+                        <h2 class="text-center">Agregar Servicio</h2>
+                        <form id="formServicio" action="../../CONTROLADOR/insertServicio.php" method="post">
+                            <label for="nombre">Nombre Servicio</label>
+                            <input type="text" name="nombre" class="form-control" required>
+                            <label for="descripcion">Descripción</label>
+                            <input type="text" name="descripcion" class="form-control" required>
                             <label for="precio">Precio (COP)</label>
-                            <input type="text" id="precio" class="form-control">
-                            <button type="submit" class="btn btn-success">Agregar</button>
-                            <button id="cerrarFormulario" class="btn btn-danger">Cerrar</button>
-                        </form>
+                            <input type="text" name="precio" class="form-control" required>
+                            <div class="text-center">
+                                <button type="submit" id="registrarFormulario" class="btn btn-success">Agregar</button>
+                                <button id="cerrarFormulario" class="btn btn-danger">Cerrar</button>
+                            </div>
+                        </form>  
                     </div>
+
+                    <form action="../../CONTROLADOR/deleteServicio.php" method="post">
+                        <label for="id">Id del Servicio a eliminar:</label>
+                        <input type="text" name="idTipoServicio" id="id">
+                        <input type="submit" value="Eliminar">
+                    </form>
+
                 </div>
             </div>
         </div>
