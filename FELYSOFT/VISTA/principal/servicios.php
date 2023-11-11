@@ -53,7 +53,6 @@
                             </div>
                         </div>
                     </header>
-
                     <table style="width: 1650px;" class="table">
                         <button id="mostrarFormulario" class="btn btn-success py-2 px-3 mb-4 mx-2">Crear Servicio</button>
                         <thead class="table-primary">
@@ -67,18 +66,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Impresión</td>
-                                <td>Servicio de impresión de documentos</td>
-                                <td>1,000</td>
-                                <td><button type="button" class="btn btn-success">Editar</button></td>
-                                <td><button type="button" class="btn btn-danger">Eliminar</button></td>
-                            </tr>
+                            <?php
+                            $host = "localhost";
+                            $user = "root";
+                            $clave = "";
+                            $bd = "db_felysoft";
 
-                            
-
-
+                            $conectar = mysqli_connect($host, $user, $clave, $bd);
+                        
+                            $select = "SELECT * FROM tiposervicio";
+                            $resultado = mysqli_query($conectar, $select);
+                        
+                            if(!$resultado){
+                                die("Error en la obtención de datos: " . mysqli_error($conectar));
+                            }
+                        
+                            while ($columna = mysqli_fetch_assoc($resultado)) {
+                                echo "<tr>";
+                                echo "<td>" . $columna['idTipoServicio'] . "</td>";
+                                echo "<td>" . $columna['nombre'] . "</td>";
+                                echo "<td>" . $columna['descripcion'] . "</td>";
+                                echo "<td>" . $columna['precio'] . "</td>";
+                                echo "<td><button type='button' class='btn btn-success'>Editar</button></td>";
+                                echo "<td><button type='button' class='btn btn-danger'>Eliminar</button></td>";
+                                echo "</tr>";
+                            }
+                            ?>
                         </tbody>
                     </table>
 

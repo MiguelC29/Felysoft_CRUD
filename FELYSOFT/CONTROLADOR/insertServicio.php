@@ -10,9 +10,9 @@ $insert="INSERT INTO tiposervicio(nombre, descripcion, precio) VALUES('$nombre',
 $query=mysqli_query($conectar, $insert);
 
     if($query==1){
-        echo "<script> alert('El servicio $nombre se agrego correctamente.'); location.href='../VISTA/principal/servicios.html'; </script>";
+        echo "<script> alert('El servicio $nombre se agrego correctamente.'); location.href='../VISTA/principal/servicios.php'; </script>";
     }else{
-        echo "<script> alert('El servicio $nombre NO se agrego correctamente. :('); location.href='../VISTA/principal/servicios.html'; </script>";
+        echo "<script> alert('El servicio $nombre NO se agrego correctamente. :('); location.href='../VISTA/principal/servicios.php'; </script>";
     }
 
 ?>
