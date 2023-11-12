@@ -53,7 +53,7 @@
                             </div>
                         </div>
                     </header>
-                    <table style="width: 1650px;" class="table">
+                    <table style="width: 1650px;" class="table text-center">
                         <button id="mostrarFormulario" class="btn btn-success py-2 px-3 mb-4 mx-2">Crear Servicio</button>
                         <thead class="table-primary">
                             <tr>
@@ -61,7 +61,7 @@
                                 <th scope="col">Servicio</th>
                                 <th scope="col">Descripción</th>
                                 <th scope="col">Precio (COP)</th>
-                                <th scope="col"></th>
+                                <th scope="col">Acciones</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -87,8 +87,10 @@
                                 echo "<td>" . $columna['nombre'] . "</td>";
                                 echo "<td>" . $columna['descripcion'] . "</td>";
                                 echo "<td>" . $columna['precio'] . "</td>";
-                                echo "<td><a href='/Felysoft/FELYSOFT/CONTROLADOR/updateServicio.php?id=" . $columna['idTipoServicio'] . "'><button type='button' class='btn btn-success'>Editar</button></a></td>";
-                                echo "<td><button type='button' class='btn btn-danger'>Eliminar</button></td>";
+                                echo "<td><a href='/Felysoft/FELYSOFT/CONTROLADOR/updateServicio.php?id=" . $columna['idTipoServicio'] . "'><button type='button' class='btn btn-success'>Editar</button></a>
+                                <button type='button' class='btn btn-danger'>Eliminar</button>
+                                </td>";
+                                echo "<td></td>";
                                 echo "</tr>";
                             }
                             ?>
