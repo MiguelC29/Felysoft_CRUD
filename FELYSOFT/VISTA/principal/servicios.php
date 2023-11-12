@@ -97,13 +97,25 @@
 
                     <div id="formularioAgregarServicios" class="formulario-agregar-servicios" style="display: none; width: 600px;">
                         <h2 class="text-center">Agregar Servicio</h2>
-                        <form id="formServicio" action="../../CONTROLADOR/insertServicio.php" method="post">
+                        <form class="was-validated" id="formServicio" action="../../CONTROLADOR/insertServicio.php" method="post">
                             <label for="nombre">Nombre Servicio</label>
-                            <input type="text" name="nombre" class="form-control" required>
+                            <input type="text" id="nombre" name="nombre" class="form-control" required>
+                                <div class="invalid-feedback text-light pb-4">
+                                    Por favor ingresa el nombre del nuevo servicio.
+                                </div>
+
                             <label for="descripcion">Descripción</label>
-                            <input type="text" name="descripcion" class="form-control" required>
+                            <input type="text" id="descripcion" name="descripcion" class="form-control" required>
+                                <div class="invalid-feedback text-light pb-4">
+                                    Por favor ingresa la descripción del nuevo servicio.
+                                </div>
+
                             <label for="precio">Precio (COP)</label>
-                            <input type="text" name="precio" class="form-control" required>
+                            <input type="text" id="precio" name="precio" class="form-control" required>
+                                <div class="invalid-feedback text-light pb-4">
+                                    Por favor ingresa el precio del nuevo servicio.
+                                </div>
+
                             <div class="text-center">
                                 <button type="submit" id="registrarFormulario" class="btn btn-success">Agregar</button>
                                 <button id="cerrarFormulario" class="btn btn-danger">Cerrar</button>
