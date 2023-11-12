@@ -8,6 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="scriptS.js"></script>
+    <script type="text/javascript">
+        function confirmar(){
+            return confirm('¿Estas Seguro?, se eliminarán los datos');
+        }
+    </script>
 </head>
 <body>
     <section class="container-fluid">
@@ -87,8 +92,8 @@
                                 echo "<td>" . $columna['nombre'] . "</td>";
                                 echo "<td>" . $columna['descripcion'] . "</td>";
                                 echo "<td>" . $columna['precio'] . "</td>";
-                                echo "<td><a href='/Felysoft/FELYSOFT/CONTROLADOR/updateServicio.php?id=" . $columna['idTipoServicio'] . "'><button type='button' class='btn btn-success'>Editar</button></a>
-                                <button type='button' class='btn btn-danger'>Eliminar</button>
+                                echo "<td><a href='/Felysoft/FELYSOFT/CONTROLADOR/updateServicio.php?id=" . $columna['idTipoServicio'] . "'><button type='button' class='btn btn-success'>Editar</button></a>    
+                                <a href='/Felysoft/FELYSOFT/CONTROLADOR/deleteServicios.php?id=" . $columna['idTipoServicio'] . "'><button type='button' class='btn btn-danger' onclick='return confirmar()'>Eliminar</button></a>
                                 </td>";
                                 echo "<td></td>";
                                 echo "</tr>";
