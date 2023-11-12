@@ -1,3 +1,6 @@
+<?php
+    include("Conexion.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,7 +9,7 @@
     <title>FELYSOFT</title>
     <link rel="shortcut icon" href="imagenes/icon.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/Felysoft/FELYSOFT/VISTA/principal/style.css">
     <script src="scriptS.js"></script>
 </head>
 <body>
@@ -27,7 +30,7 @@
                     </div>
                     <a class="rounded" href="../VISTA/principal/404.html">Estadísticas</a>
                     <a class="rounded" href="#configuración">Configuración</a>
-                    <img id="iconBar" class="icon" src="imagenes/icon.png" alt="">
+                    <img id="iconBar" class="icon" src="/felysoft/FELYSOFT/VISTA/principal/imagenes/icon.png" alt="">
                 </div>
                 <div class="content" style="width: 1200px;">
                     <header class="py-3 mb-3 border-bottom">
@@ -39,7 +42,7 @@
                                 <div class="flex-shrink-0 dropdown">
                                     <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
                                         data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="imagenes/user.png" alt="mdo" width="55" height="55" class="rounded-circle">
+                                        <img src="/felysoft/FELYSOFT/VISTA/principal/imagenes/user.png" alt="mdo" width="55" height="55" class="rounded-circle">
                                     </a>
                                     <ul class="dropdown-menu text-small shadow">
                                         <li><a class="dropdown-item" href="#">Ajustes</a></li>
@@ -53,63 +56,62 @@
                             </div>
                         </div>
                     </header>
-                    <table style="width: 1650px;" class="table">
-                        <button id="mostrarFormulario" class="btn btn-success py-2 px-3 mb-4 mx-2">Crear Servicio</button>
-                        <thead class="table-primary">
-                            <tr>
-                                <th scope="col">No. </th>
-                                <th scope="col">Servicio</th>
-                                <th scope="col">Descripción</th>
-                                <th scope="col">Precio (COP)</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $host = "localhost";
-                            $user = "root";
-                            $clave = "";
-                            $bd = "db_felysoft";
 
-                            $conectar = mysqli_connect($host, $user, $clave, $bd);
-                        
-                            $select = "SELECT * FROM tiposervicio";
-                            $resultado = mysqli_query($conectar, $select);
-                        
-                            if(!$resultado){
-                                die("Error en la obtención de datos: " . mysqli_error($conectar));
-                            }
-                        
-                            while ($columna = mysqli_fetch_assoc($resultado)) {
-                                echo "<tr>";
-                                echo "<td>" . $columna['idTipoServicio'] . "</td>";
-                                echo "<td>" . $columna['nombre'] . "</td>";
-                                echo "<td>" . $columna['descripcion'] . "</td>";
-                                echo "<td>" . $columna['precio'] . "</td>";
-                                echo "<td><a href='/Felysoft/FELYSOFT/CONTROLADOR/updateServicio.php?id=" . $columna['idTipoServicio'] . "'><button type='button' class='btn btn-success'>Editar</button></a></td>";
-                                echo "<td><button type='button' class='btn btn-danger'>Eliminar</button></td>";
-                                echo "</tr>";
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                    <?php
+                        if(isset($_POST['enviar'])){
+                                //aqui entra cuando se presiona el boton de enviar
+                                
+                                $nombre = $_POST["nombre"];
+                                $descripcion = $_POST["descripcion"];
+                                $precio = $_POST["precio"];
+                                $id = $_POST["id"];
 
-                    <div id="formularioAgregarServicios" class="formulario-agregar-servicios" style="display: none; width: 600px;">
-                        <h2 class="text-center">Agregar Servicio</h2>
-                        <form id="formServicio" action="../../CONTROLADOR/insertServicio.php" method="post">
+                                //actualizar el registro
+                                $sql = "UPDATE `tiposervicio` SET `nombre` = '$nombre', `descripcion` = '$descripcion', `precio` = '$precio' WHERE `tiposervicio`.`idTipoServicio` = '" . $id . "'";
+                                $resultado=mysqli_query($conectar,$sql);
+
+                                if($resultado){
+                                    echo "<script> alert('Los datos se actualizaron correctamente.'); location.href='../VISTA/principal/servicios.php'; </script>";
+                                }else{
+                                    echo "<script> alert('Los datos NO se actulizaron correctamente.'); location.href='../VISTA/principal/servicios.php'; </script>";
+                                }
+
+                                mysqli_close($conectar);
+
+                        }else{
+                                //aqui entra si no se ha presionado el boton enviar
+                                $id=$_GET['id'];
+                                $sql="SELECT * FROM tiposervicio WHERE idTipoServicio='".$id."'";
+                                $resultado=mysqli_query($conectar, $sql);
+
+                                $fila=mysqli_fetch_assoc($resultado);
+                                $nombre = $fila["nombre"];
+                                $descripcion = $fila["descripcion"];
+                                $precio = $fila["precio"];
+
+                                mysqli_close($conectar);
+                    ?>
+
+                    <h2 class="text-center">Actualizar Servicio</h2>
+                    <form id="formServicio" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                             <label for="nombre">Nombre Servicio</label>
-                            <input type="text" name="nombre" class="form-control" required>
+                            <input type="text" name="nombre" class="form-control" value="<?php echo $nombre; ?>" required>
                             <label for="descripcion">Descripción</label>
-                            <input type="text" name="descripcion" class="form-control" required>
+                            <input type="text" name="descripcion" class="form-control" value="<?php echo $descripcion; ?>" required>
                             <label for="precio">Precio (COP)</label>
-                            <input type="text" name="precio" class="form-control" required>
+                            <input type="text" name="precio" class="form-control" value="<?php echo $precio; ?>" required>
+
+                            <input type="hidden" name="id" value="<?php echo $id; ?>">
+
                             <div class="text-center">
-                                <button type="submit" id="registrarFormulario" class="btn btn-success">Agregar</button>
+                                <button type="submit" name="enviar" class="btn btn-success">Actualizar</button>
                                 <button id="cerrarFormulario" class="btn btn-danger">Cerrar</button>
                             </div>
-                        </form>  
-                    </div>
+                        </form>
+                                
+                        <?php
+                            }
+                        ?>
                 </div>
             </div>
         </div>
