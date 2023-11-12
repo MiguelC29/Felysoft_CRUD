@@ -93,21 +93,39 @@
                     ?>
 
                     <h2 class="text-center">Actualizar Servicio</h2>
-                    <form id="formServicio" action="<?=$_SERVER['PHP_SELF']?>" method="post">
-                            <label for="nombre">Nombre Servicio</label>
+                    <form class="was-validated" id="formServicio" action="<?=$_SERVER['PHP_SELF']?>" method="post">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre Servicio</label>
                             <input type="text" name="nombre" class="form-control" value="<?php echo $nombre; ?>" required>
-                            <label for="descripcion">Descripción</label>
-                            <input type="text" name="descripcion" class="form-control" value="<?php echo $descripcion; ?>" required>
-                            <label for="precio">Precio (COP)</label>
-                            <input type="text" name="precio" class="form-control" value="<?php echo $precio; ?>" required>
-
-                            <input type="hidden" name="id" value="<?php echo $id; ?>">
-
-                            <div class="text-center">
-                                <button type="submit" name="enviar" class="btn btn-success">Actualizar</button>
-                                <button id="cerrarFormulario" class="btn btn-danger">Cerrar</button>
+                            <div class="invalid-feedback">
+                                Por favor ingresa el nombre del servicio a actualizar.
                             </div>
-                        </form>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <input type="text" name="descripcion" class="form-control" value="<?php echo $descripcion; ?>" required>
+                            <div class="invalid-feedback">
+                                Por favor ingresa la descripción del servicio a actualizar.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="precio" class="form-label">Precio (COP)</label>
+                            <input type="text" name="precio" class="form-control" value="<?php echo $precio; ?>" required>
+                            <div class="invalid-feedback">
+                                Por favor ingresa el precio del servicio a actualizar.
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+
+                        <div class="text-center">
+                            <button type="submit" name="enviar" class="btn btn-success">Actualizar</button>
+                            <button id="cerrarFormulario" class="btn btn-danger">Cerrar</button>
+                        </div>
+                    </form>
+
                                 
                         <?php
                             }

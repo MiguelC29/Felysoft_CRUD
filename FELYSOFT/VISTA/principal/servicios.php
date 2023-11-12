@@ -98,24 +98,30 @@
                     <div id="formularioAgregarServicios" class="formulario-agregar-servicios" style="display: none; width: 600px;">
                         <h2 class="text-center">Agregar Servicio</h2>
                         <form class="was-validated" id="formServicio" action="../../CONTROLADOR/insertServicio.php" method="post">
-                            <label for="nombre">Nombre Servicio</label>
-                            <input type="text" id="nombre" name="nombre" class="form-control" required>
-                                <div class="invalid-feedback text-light pb-4">
-                                    Por favor ingresa el nombre del nuevo servicio.
-                                </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" id="floatingInput" name="nombre" class="form-control" placeholder="nombre" required>
+                                <label for="floatingInput">Nombre Servicio</label>
+                                    <div class="invalid-feedback text-light pb-2 ms-3">
+                                        Por favor ingresa el nombre del nuevo servicio.
+                                    </div>
+                            </div>             
 
-                            <label for="descripcion">Descripción</label>
-                            <input type="text" id="descripcion" name="descripcion" class="form-control" required>
-                                <div class="invalid-feedback text-light pb-4">
-                                    Por favor ingresa la descripción del nuevo servicio.
-                                </div>
-
-                            <label for="precio">Precio (COP)</label>
-                            <input type="text" id="precio" name="precio" class="form-control" required>
-                                <div class="invalid-feedback text-light pb-4">
-                                    Por favor ingresa el precio del nuevo servicio.
-                                </div>
-
+                            <div class="form-floating">
+                                <input type="text" id="descripcion" name="descripcion" class="form-control" placeholder="descripcion" required>
+                                <label for="descripcion">Descripción</label>
+                                    <div class="invalid-feedback text-light pb-2 ms-3">
+                                        Por favor ingresa la descripción del nuevo servicio.
+                                    </div>
+                            </div>
+                            
+                            <div class="form-floating">
+                                <input type="text" id="precio" name="precio" class="form-control" placeholder="precio" required>
+                                <label for="precio">Precio (COP)</label>
+                                    <div class="invalid-feedback text-light pb-2 ms-3">
+                                        Por favor ingresa el precio del nuevo servicio.
+                                    </div>
+                            </div>
+                            
                             <div class="text-center">
                                 <button type="submit" id="registrarFormulario" class="btn btn-success">Agregar</button>
                                 <button id="cerrarFormulario" class="btn btn-danger">Cerrar</button>
