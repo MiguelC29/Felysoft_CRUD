@@ -71,7 +71,8 @@
                         include "../../CONTROLADOR/Conexion.php";
 
                         //Variable contenedora de la consulta a realizar
-                        $sql = "SELECT * FROM productos";
+                        $sql = "SELECT pkIdProducto, imagen, tipoImg, productos.nombre as producto, marca, precioVenta, fechaVencimiento, categoria.nombre as categoria, proveedores.nombre as proveedor FROM productos INNER JOIN categoria ON fkIdCategoria = pkIdCategoria INNER JOIN proveedores ON fkIdProveedor = pkIdProveedores ORDER BY pkIdProducto";
+
                         $result = mysqli_query($conectar, $sql);
                     ?>
 
@@ -96,13 +97,13 @@
                             ?>
                             <tr>
                                 <th scope="row"><?php echo $filas['pkIdProducto'];?></th>
-                                <td><?php echo $filas['imagen']?></td>
-                                <td><?php echo $filas['nombre']?></td>
+                                <td><img width = "80px" height = "80px" src="data:<?php echo $filas['tipoImg']?>;base64,<?php echo base64_encode($filas['imagen'])?>"></td>
+                                <td><?php echo $filas['producto']?></td>
                                 <td><?php echo $filas['marca']?></td>
                                 <td><?php echo $filas['precioVenta']?></td>
                                 <td><?php echo $filas['fechaVencimiento']?></td>
-                                <td><?php echo $filas['fkIdCategoria']?></td>
-                                <td><?php echo $filas['fkIdProveedor']?></td>
+                                <td><?php echo $filas['categoria']?></td>
+                                <td><?php echo $filas['proveedor']?></td>
                                 <td>
                                     <?php echo "<button type='button' class='btn btn-primary me-3'>+</button>"?>
                                     <?php echo "<button type='button' class='btn btn-success me-3'>Editar</button>"?>
@@ -115,11 +116,6 @@
                             ?>
                         </tbody>
                     </table>
-
-                    <?php
-                        // Cerrando la conexion con la base de datos
-                        mysqli_close($conectar);
-                    ?>
 
                     <div id="formularioAgregarProductos" class="formulario-agregar-productos">
                         <h2>Agregar Producto</h2>
@@ -145,8 +141,9 @@
 
                     <div id="formAddProduct" class="formulario-agregar-productos">
                         <h2 class="text-center py-3">Agregar Nuevo Producto</h2>
-                        <form action="../../CONTROLADOR/InsertProducto.php" method="post">
 
+                        <!-- ectype: tipo de encriptacion por lo que manejamos img -->
+                        <form action="../../CONTROLADOR/InsertProducto.php" method="post" enctype="multipart/form-data">
                             <table style="width: 830px;">
                                 <tbody>
                                     <tr>
@@ -162,35 +159,53 @@
                                         <td><input type="date" id="fVencimiento" name="fVencimiento" class="form-control"></td>
                                     </tr>
                                     <tr>
+                                        <?php
+                                            //Variable contenedora de la consulta a realizar
+                                            $sqlC = "SELECT pkIdCategoria, nombre FROM categoria ORDER BY pkIdCategoria";
+
+                                            $result = mysqli_query($conectar, $sqlC);
+                                        ?>
+
                                         <th><label for="categoria">Categoría</label></th>
                                         <td><select class="form-select" id="categoria" name="categoria" required>
                                             <option selected>Seleccione la categoría</option>
-                                            <option value="1">Gaseosas</option>
-                                            <option value="2">Galletas</option>
-                                            <option value="3">Lacteos</option>
-                                            <option value="4">Dulces</option>
-                                            <option value="5">Paquetes</option>
-                                        </select></td>                                        
+                                            <?php while($filas = mysqli_fetch_assoc($result)) { ?>
+                                            <option value="<?php echo $filas['pkIdCategoria']?>"><?php echo $filas['nombre']?></option>
+                                            <?php
+                                                }
+                                            ?>
+                                        </select></td> 
+                                        <?php
+                                            //Variable contenedora de la consulta a realizar
+                                            $sqlProv = "SELECT pkIdProveedores, nombre FROM proveedores ORDER BY pkIdProveedores";
+
+                                            $result = mysqli_query($conectar, $sqlProv);
+                                        ?>                               
                                         <th class="ps-4"><label for="proveedor">Proveedor</label></th>
                                         <td><select class="form-select" id="proveedor" name="proveedor" required>
                                             <option selected>Seleccione el proveedor</option>
-                                            <option value="101">Papas Ricas</option>
-                                            <option value="102">Galletas Sabrosas S.A.</option>
-                                            <option value="103">Refrescos Frescos</option>
-                                            <option value="104">Bimbo Distribuciones E.I.R.L.</option>
-                                            <option value="105">Hershey's Distribuciones S.A.</option>
+                                            <?php while($filas = mysqli_fetch_assoc($result)) { ?>
+                                            <option value="<?php echo $filas['pkIdProveedores']?>"><?php echo $filas['nombre']?></option>
+                                            <?php
+                                                }
+                                            ?>
                                         </select></td>
                                     </tr>
                                     <tr>
                                         <div class="mb-3">
-                                            <th><label for="formFile" class="form-label">Imagen</label></th>
-                                            <td colspan="4"><input class="form-control" type="file" id="formFile" name="formFile"></th>
+                                            <th><label for="imagenProduct" class="form-label">Imagen</label></th>
+                                            <td colspan="4"><input class="form-control" type="file" id="imagenProduct" name="imagenProduct"></td>
                                         </div>
                                     </tr>
                                 </tbody>
                             </table>
+
+                            <?php
+                                // Cerrando la conexion con la base de datos
+                                mysqli_close($conectar);
+                            ?>
                             <div class="text-center py-3">
-                                <button id="saveProduct" type="submit" class="btn btn-success me-3">Agregar</button>
+                                <button name="saveProduct" id="saveProduct" type="submit" class="btn btn-success me-3">Agregar</button>
                                 <button id="closeForm" class="btn btn-danger">Cerrar</button>
                             </div>
                         </form>
