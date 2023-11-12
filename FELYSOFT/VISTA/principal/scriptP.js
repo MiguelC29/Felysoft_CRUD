@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
     const agregarProductosBtn = document.getElementById('agregarProductosBtn');
-    const formularioAgregarProductos = document.getElementById('formularioAgregarProductos');
+    // const formularioAgregarProductos = document.getElementById('formularioAgregarProductos');
     const cerrarFormulario = document.getElementById('cerrarFormulario');
     const closeForm = document.getElementById('closeForm');
     
-    const newProductbtn = document.getElementById('addNewProduct');
+    // const newProductbtn = document.getElementById('addNewProduct');
     const formAddProduct = document.getElementById('formAddProduct');
 
     const overlay = document.createElement('div');
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
   
     agregarProductosBtn.addEventListener('click', function () {
       document.body.appendChild(overlay);
-      formularioAgregarProductos.style.display = 'block';
+      formAddProduct.style.display = 'block';
     });
   
     cerrarFormulario.addEventListener('click', function () {
@@ -21,11 +21,11 @@ document.addEventListener('DOMContentLoaded', function () {
       event.preventDefault();
     });
 
-    newProductbtn.addEventListener('click', function () {
-      formularioAgregarProductos.style.display = 'none';
-      document.body.appendChild(overlay);
-      formAddProduct.style.display = 'block';
-    });
+    // newProductbtn.addEventListener('click', function () {
+    //   formularioAgregarProductos.style.display = 'none';
+    //   document.body.appendChild(overlay);
+    //   formAddProduct.style.display = 'block';
+    // });
 
     closeForm.addEventListener('click', function () {
       document.body.removeChild(overlay);

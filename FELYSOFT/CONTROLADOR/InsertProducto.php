@@ -18,6 +18,6 @@
 
     //Verificar la conexión
     if($query) {
-        echo "<script> alert('El producto $nombre se agregó correctamente.'); location.href='../VISTA/principal/productos.html'; </script>'";
+        echo "<script> alert('El producto $nombre se agregó correctamente.'); location.href='../VISTA/principal/productos.php'; </script>'";
     }
 ?>
