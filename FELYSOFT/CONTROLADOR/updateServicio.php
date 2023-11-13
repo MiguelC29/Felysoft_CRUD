@@ -25,7 +25,7 @@
                         <ul id="dropdownSide" class="dropdown-menu" aria-labelledby="dashboardDropdown">
                             <li><a id="sideList" class="dropdown-item" href="productos.html">Productos</a></li>
                             <li><a id="sideList" class="dropdown-item" href="libros.html">Libros</a></li>
-                            <li><a id="sideList" class="dropdown-item" href="servicios.html">Servicios</a></li>
+                            <li><a id="sideList" class="dropdown-item" href="/felysoft/FELYSOFT/VISTA/principal/servicios.php">Servicios</a></li>
                         </ul>
                     </div>
                     <a class="rounded" href="../VISTA/principal/404.html">Estadísticas</a>
@@ -59,7 +59,7 @@
 
                     <?php
                         if(isset($_POST['enviar'])){
-                                //aqui entra cuando se presiona el boton de enviar
+                                //aqui entra cuando se presiona el boton de enviar (actualizar)
                                 
                                 $nombre = $_POST["nombre"];
                                 $descripcion = $_POST["descripcion"];
@@ -79,7 +79,7 @@
                                 mysqli_close($conectar);
 
                         }else{
-                                //aqui entra si no se ha presionado el boton enviar
+                                //aqui entra si no se ha presionado el boton enviar (actualizar)
                                 $id=$_GET['id'];
                                 $sql="SELECT * FROM tiposervicio WHERE idTipoServicio='".$id."'";
                                 $resultado=mysqli_query($conectar, $sql);
@@ -121,12 +121,12 @@
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
 
                         <div class="text-center">
-                            <button type="submit" name="enviar" class="btn btn-success">Actualizar</button>
-                            <button id="cerrarFormulario" class="btn btn-danger">Cerrar</button>
+                            <button type="submit" name="enviar" class="btn btn-success">Actualizar</button>                          
                         </div>
-                    </form>
-
-                                
+                    </form>   
+                    
+                    <a href="/felysoft/FELYSOFT/VISTA/principal/servicios.php"><button id="cerrarFormularioUpdate" class="btn btn-danger">Cerrar</button></a>
+                    
                         <?php
                             }
                         ?>
