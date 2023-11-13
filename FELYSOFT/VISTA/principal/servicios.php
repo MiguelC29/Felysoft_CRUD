@@ -58,7 +58,7 @@
                             </div>
                         </div>
                     </header>
-                    <table style="width: 1650px;" class="table text-center">
+                    <table style="width: 1650px;" class="table text-center table-hover">
                         <button id="mostrarFormulario" class="btn btn-success py-2 px-3 mb-4 mx-2">Crear Servicio</button>
                         <thead class="table-primary">
                             <tr>
