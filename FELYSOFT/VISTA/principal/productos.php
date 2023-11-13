@@ -10,6 +10,11 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="scriptP.js"></script>
+    <script type="text/javascript">
+        function confirmar() {
+            return confirm('¿Estas Seguro?, se eliminarán los datos');
+        }
+    </script>
 </head>
 
 <body>
@@ -105,9 +110,9 @@
                                 <td><?php echo $filas['categoria']?></td>
                                 <td><?php echo $filas['proveedor']?></td>
                                 <td>
-                                    <?php echo "<button type='button' class='btn btn-primary me-3'>+</button>"?>
-                                    <?php echo "<button type='button' class='btn btn-success me-3'>Editar</button>"?>
-                                    <?php echo "<button type='button' class='btn btn-danger'>Eliminar</button>"?>
+                                    <?php echo "<a type='button' href='' class='btn btn-primary me-3'>+</a>"?>
+                                    <?php echo "<a type='button' id='updateProductbtn' href='../../CONTROLADOR/UpdateProducto.php?pkIdProducto=".$filas['pkIdProducto']."' class='btn btn-success me-3'>Editar</a>"?>
+                                    <?php echo "<a type='button' href='../../CONTROLADOR/DeleteProducto.php?pkIdProducto=".$filas['pkIdProducto']."' class='btn btn-danger' onclick='return confirmar()'>Eliminar</a>"?>
                                 </td>
                             </tr>
 
@@ -116,28 +121,6 @@
                             ?>
                         </tbody>
                     </table>
-
-                    <div id="formularioAgregarProductos" class="formulario-agregar-productos">
-                        <h2>Agregar Producto</h2>
-                        <form>
-
-                            <label for="nombre">Nombre del Producto</label>
-                            <input type="text" id="nombre" class="form-control" required>
-
-                            <label for="precio">Precio Compra</label>
-                            <input type="text" id="precio" class="form-control" required>
-
-                            <label for="precio">Precio Venta</label>
-                            <input type="text" id="precio" class="form-control" required>
-
-                            <label for="stock">Stock</label>
-                            <input type="text" id="stock" class="form-control" required>
-
-                            <button id="abrirFormulario" type="submit" class="btn btn-success">Agregar</button>
-                            <!-- <button id="addNewProduct" class="btn btn-primary">+</button> -->
-                            <button id="cerrarFormulario" class="btn btn-danger">Cerrar</button>
-                        </form>
-                    </div>
 
                     <div id="formAddProduct" class="formulario-agregar-productos">
                         <h2 class="text-center py-3">Agregar Nuevo Producto</h2>
@@ -210,7 +193,6 @@
                             </div>
                         </form>
                     </div>
-
                 </div>
     </section>
 

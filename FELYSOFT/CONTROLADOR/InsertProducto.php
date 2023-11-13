@@ -38,10 +38,11 @@
 
             //Verificar la conexión
             if($query) {
-                echo "<script> alert('El producto $nombre se agregó correctamente.'); location.href='../VISTA/principal/productos.php';</script>'";
+                echo "<script> alert('El producto $nomProduc se agregó correctamente.'); location.href='../VISTA/principal/productos.php';</script>'";
             } else {
-                echo "Error " . mysqli_error($conectar);
+                echo "<script> alert('ERROR: Los datos NO fueron almacenados correctamente en la BD.'); location.href='../VISTA/principal/productos.php';</script>'";
             }
+            mysqli_close($conectar);
         }
     }
 ?>
