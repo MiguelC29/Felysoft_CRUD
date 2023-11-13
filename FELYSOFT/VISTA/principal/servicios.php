@@ -27,7 +27,7 @@
                         <ul id="dropdownSide" class="dropdown-menu" aria-labelledby="dashboardDropdown">
                             <li><a id="sideList" class="dropdown-item" href="productos.html">Productos</a></li>
                             <li><a id="sideList" class="dropdown-item" href="libros.html">Libros</a></li>
-                            <li><a id="sideList" class="dropdown-item" href="servicios.html">Servicios</a></li>
+                            <li><a id="sideList" class="dropdown-item" href="servicios.php">Servicios</a></li>
                         </ul>
                     </div>
                     <a class="rounded" href="../VISTA/principal/404.html">Estadísticas</a>
@@ -47,12 +47,12 @@
                                         <img src="imagenes/user.png" alt="mdo" width="55" height="55" class="rounded-circle">
                                     </a>
                                     <ul class="dropdown-menu text-small shadow">
-                                        <li><a class="dropdown-item" href="#">Ajustes</a></li>
-                                        <li><a class="dropdown-item" href="../VISTA/principal/500.html">Perfil</a></li>
+                                        <li><a class="dropdown-item" href="404.html">Ajustes</a></li>
+                                        <li><a class="dropdown-item" href="500.html">Perfil</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="../VISTA/login/index.html">Salir</a></li>
+                                        <li><a class="dropdown-item" href="index.html">Salir</a></li>
                                     </ul>
                                 </div>
                             </div>
