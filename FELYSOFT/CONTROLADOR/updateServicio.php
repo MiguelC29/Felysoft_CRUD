@@ -121,11 +121,12 @@
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
 
                         <div class="text-center">
-                            <button type="submit" name="enviar" class="btn btn-success">Actualizar</button>                          
+                            <button type="submit" id="abrirFormulario" name="enviar" class="btn btn-success">Actualizar</button>
+                            <a href="/felysoft/FELYSOFT/VISTA/principal/servicios.php" id="cerrarFormulario" class="btn btn-danger">Cerrar</a>
                         </div>
                     </form>   
                     
-                    <a href="/felysoft/FELYSOFT/VISTA/principal/servicios.php"><button id="cerrarFormularioUpdate" class="btn btn-danger">Cerrar</button></a>
+                    
                     
                         <?php
                             }
