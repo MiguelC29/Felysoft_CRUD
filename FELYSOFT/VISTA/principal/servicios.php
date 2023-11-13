@@ -47,8 +47,8 @@
                                         <img src="imagenes/user.png" alt="mdo" width="55" height="55" class="rounded-circle">
                                     </a>
                                     <ul class="dropdown-menu text-small shadow">
-                                        <li><a class="dropdown-item" href="404.html">Ajustes</a></li>
-                                        <li><a class="dropdown-item" href="500.html">Perfil</a></li>
+                                        <li><a class="dropdown-item" href="./404.html">Ajustes</a></li>
+                                        <li><a class="dropdown-item" href="./500.html">Perfil</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
