@@ -1,3 +1,23 @@
+<?php
+    $host = "localhost";
+    $user = "root";
+    $clave = "";
+    $bd = "db_felysoft";
+
+    $conectar = mysqli_connect($host, $user, $clave, $bd);
+
+    $registrosPorPagina = 10;
+    $paginaActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+    $offset = ($paginaActual - 1) * $registrosPorPagina;
+
+    $select = "SELECT * FROM tiposervicio LIMIT $offset, $registrosPorPagina";
+    $resultado = mysqli_query($conectar, $select);
+
+    if (!$resultado) {
+        die("Error en la obtención de datos: " . mysqli_error($conectar));
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -39,7 +59,7 @@
                         <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
                             <div class="d-flex align-items-center">
                                 <form class="w-100 me-3" role="search">
-                                    <input id="buscar" type="search" class="form-control" placeholder="Buscar productos..." aria-label="Search">
+                                    <input id="buscar" type="search" class="form-control" placeholder="Buscar servicios..." aria-label="Search">
                                 </form>
                                 <div class="flex-shrink-0 dropdown">
                                     <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
@@ -72,20 +92,6 @@
                         </thead>
                         <tbody>
                             <?php
-                            $host = "localhost";
-                            $user = "root";
-                            $clave = "";
-                            $bd = "db_felysoft";
-
-                            $conectar = mysqli_connect($host, $user, $clave, $bd);
-                        
-                            $select = "SELECT * FROM tiposervicio";
-                            $resultado = mysqli_query($conectar, $select);
-                        
-                            if(!$resultado){
-                                die("Error en la obtención de datos: " . mysqli_error($conectar));
-                            }
-                        
                             while ($columna = mysqli_fetch_assoc($resultado)) {
                                 echo "<tr>";
                                 echo "<td>" . $columna['idTipoServicio'] . "</td>";
@@ -101,6 +107,21 @@
                             ?>
                         </tbody>
                     </table>
+                    
+                    <nav aria-label="...">
+                        <ul class="pagination pagination-lg">
+                            <?php
+                            $totalRegistros = mysqli_num_rows(mysqli_query($conectar, "SELECT * FROM tiposervicio"));
+                            $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
+
+                            for ($i = 1; $i <= $totalPaginas; $i++) {
+                                echo "<li class='page-item " . ($paginaActual == $i ? 'active' : '') . "' aria-current='page'>";
+                                echo "<a class='page-link' href='servicios.php?pagina=$i'>$i</a>";
+                                echo "</li>";
+                            }
+                            ?>
+                        </ul>
+                    </nav>
 
                     <div id="formularioAgregarServicios" class="formulario-agregar-servicios" style="display: none; width: 600px;">
                         <h2 class="text-center">Agregar Servicio</h2>
@@ -147,3 +168,6 @@
 </body>
 </html>
 
+<?php
+mysqli_close($conectar);
+?>
