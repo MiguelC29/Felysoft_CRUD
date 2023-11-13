@@ -11,8 +11,12 @@
     <link rel="stylesheet" href="style.css">
     <script src="scriptP.js"></script>
     <script type="text/javascript">
-        function confirmar() {
+        function confirmarDelete() {
             return confirm('¿Estas Seguro?, se eliminarán los datos');
+        }
+
+        function confirmarInsert() {
+            return confirm('¿Estas Seguro?, se guardarán los datos ingresados');
         }
     </script>
 </head>
@@ -112,7 +116,7 @@
                                 <td>
                                     <?php echo "<a type='button' href='' class='btn btn-primary me-3'>+</a>"?>
                                     <?php echo "<a type='button' id='updateProductbtn' href='../../CONTROLADOR/UpdateProducto.php?pkIdProducto=".$filas['pkIdProducto']."' class='btn btn-success me-3'>Editar</a>"?>
-                                    <?php echo "<a type='button' href='../../CONTROLADOR/DeleteProducto.php?pkIdProducto=".$filas['pkIdProducto']."' class='btn btn-danger' onclick='return confirmar()'>Eliminar</a>"?>
+                                    <?php echo "<a type='button' href='../../CONTROLADOR/DeleteProducto.php?pkIdProducto=".$filas['pkIdProducto']."' class='btn btn-danger' onclick='return confirmarDelete()'>Eliminar</a>"?>
                                 </td>
                             </tr>
 
@@ -188,7 +192,7 @@
                                 mysqli_close($conectar);
                             ?>
                             <div class="text-center py-3">
-                                <button name="saveProduct" id="saveProduct" type="submit" class="btn btn-success me-3">Agregar</button>
+                                <button name="saveProduct" id="saveProduct" type="submit" class="btn btn-success me-3" onclick='return confirmarInsert()'>Agregar</button>
                                 <button id="closeForm" class="btn btn-danger">Cerrar</button>
                             </div>
                         </form>

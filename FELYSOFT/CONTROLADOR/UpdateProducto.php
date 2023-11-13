@@ -13,6 +13,11 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="scriptP.js"></script>
+    <script type="text/javascript">
+        function confirmarUpdate() {
+            return confirm('¿Estas Seguro?, se modificarán los datos');
+        }
+    </script>
 </head>
 <body>
     <?php
@@ -146,7 +151,7 @@
             ?>
                     
             <div class="text-center py-3">
-                <button name="updateProduct" id="updateProduct" type="submit" class="btn btn-success me-3">Actualizar</button>
+                <button name="updateProduct" id="updateProduct" type="submit" class="btn btn-success me-3" onclick='return confirmarUpdate()'>Actualizar</button>
                 <!-- <button id="closeForm" class="btn btn-danger">Cerrar</button> -->
                 <a href="../VISTA/principal/productos.php" class="btn btn-danger">Cerrar</a>
             </div>
