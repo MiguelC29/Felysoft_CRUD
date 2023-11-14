@@ -97,6 +97,10 @@
                                 // Accediendo al archivo conexion.php
                                 include "../../CONTROLADOR/Conexion.php";
 
+                                $registrosXPagina = 10;
+                                $pagActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+                                $offset = ($pagActual - 1) * $registrosXPagina;
+
                                 if (isset($_POST['buscar'])) {
                                     //MOSTRAR BÚSQUEDA
                                     $inputBuscar = $_POST['buscar'];
@@ -116,7 +120,7 @@
                             ?>
                             <tr>
                                 <th scope="row"><?php echo $filas['pkIdProducto'];?></th>
-                                <td><img width = "80px" height = "80px" src="data:<?php echo $filas['tipoImg']?>;base64,<?php echo base64_encode($filas['imagen'])?>"></td>
+                                <td><img width = "100px" height = "100px" src="data:<?php echo $filas['tipoImg']?>;base64,<?php echo base64_encode($filas['imagen'])?>"></td>
                                 <td><?php echo $filas['producto']?></td>
                                 <td><?php echo $filas['marca']?></td>
                                 <td><?php echo $filas['precioVenta']?></td>
@@ -135,9 +139,13 @@
                                     //MOSTRAR TODOS LOS ALUMNOS
                                     // Conexion y consulta con la BD y la tabla productos
                                     //Variable contenedora de la consulta a realizar
-                                    $sql = "SELECT pkIdProducto, imagen, tipoImg, productos.nombre as producto, marca, precioVenta, fechaVencimiento, categoria.nombre as categoria, proveedores.nombre as proveedor FROM productos INNER JOIN categoria ON fkIdCategoria = pkIdCategoria INNER JOIN proveedores ON fkIdProveedor = pkIdProveedores ORDER BY pkIdProducto";
-                                    
-                                    $result = mysqli_query($conectar, $sql);
+                                    $select = "SELECT pkIdProducto, imagen, tipoImg, productos.nombre as producto, marca, precioVenta, fechaVencimiento, categoria.nombre as categoria, proveedores.nombre as proveedor FROM productos INNER JOIN categoria ON fkIdCategoria = pkIdCategoria INNER JOIN proveedores ON fkIdProveedor = pkIdProveedores ORDER BY pkIdProducto LIMIT $offset, $registrosXPagina";
+
+                                    $result = mysqli_query($conectar, $select);
+
+                                    if(!$result) {
+                                        die("Error en la obtención de datos: " . mysqli_error($conectar));
+                                    }
 
                                     while($filas = mysqli_fetch_assoc($result)) { 
                             ?>
@@ -164,6 +172,21 @@
                         </tbody>
                     </table>
 
+                    <nav aria-label="...">
+                      <ul class="pagination pagination-lg">
+                        <?php
+                            $totalRegistros = mysqli_num_rows(mysqli_query($conectar, "SELECT * FROM productos"));
+                            $totalPaginas = ceil($totalRegistros / $registrosXPagina);
+
+                            for($i = 1; $i <= $totalPaginas; $i++) {
+                                echo "<li class='page-item " . ($pagActual == $i ? 'active' : '') . "' aria-current='page'>";
+                                echo "<a class='page-link' href='productos.php?pagina=$i'>$i</a>";
+                                echo "</li>";
+                            }
+                        ?>
+                      </ul>
+                    </nav>
+
                     <div id="formAddProduct" class="formulario-agregar-productos">
                         <h2 class="text-center py-3">Agregar Nuevo Producto</h2>
 
@@ -186,7 +209,7 @@
                                     <tr>
                                         <?php
                                             //Variable contenedora de la consulta a realizar
-                                            $sqlC = "SELECT pkIdCategoria, nombre FROM categoria ORDER BY pkIdCategoria";
+                                            $sqlC = "SELECT pkIdCategoria, nombre FROM categoria ORDER BY nombre";
 
                                             $result = mysqli_query($conectar, $sqlC);
                                         ?>
@@ -202,7 +225,7 @@
                                         </select></td> 
                                         <?php
                                             //Variable contenedora de la consulta a realizar
-                                            $sqlProv = "SELECT pkIdProveedores, nombre FROM proveedores ORDER BY pkIdProveedores";
+                                            $sqlProv = "SELECT pkIdProveedores, nombre FROM proveedores ORDER BY nombre";
 
                                             $result = mysqli_query($conectar, $sqlProv);
                                         ?>                               

@@ -106,7 +106,7 @@
                     <tr>
                         <?php
                             //Variable contenedora de la consulta a realizar
-                            $sqlC = "SELECT pkIdCategoria, nombre FROM categoria ORDER BY pkIdCategoria";
+                            $sqlC = "SELECT pkIdCategoria, nombre FROM categoria ORDER BY nombre";
 
                             $result = mysqli_query($conectar, $sqlC);
                         ?>
@@ -122,7 +122,7 @@
                         </select></td> 
                         <?php
                             //Variable contenedora de la consulta a realizar
-                            $sqlProv = "SELECT pkIdProveedores, nombre FROM proveedores ORDER BY pkIdProveedores";
+                            $sqlProv = "SELECT pkIdProveedores, nombre FROM proveedores ORDER BY nombre";
 
                             $result = mysqli_query($conectar, $sqlProv);
                         ?>                               
