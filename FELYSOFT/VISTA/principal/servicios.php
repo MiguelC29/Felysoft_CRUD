@@ -94,7 +94,7 @@
                             <?php
                             while ($columna = mysqli_fetch_assoc($resultado)) {
                                 echo "<tr>";
-                                echo "<td>" . $columna['idTipoServicio'] . "</td>";
+                                echo "<th>" . $columna['idTipoServicio'] . "</th>";
                                 echo "<td>" . $columna['nombre'] . "</td>";
                                 echo "<td>" . $columna['descripcion'] . "</td>";
                                 echo "<td>" . $columna['precio'] . "</td>";
