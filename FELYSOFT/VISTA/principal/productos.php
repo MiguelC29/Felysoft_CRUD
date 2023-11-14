@@ -50,9 +50,11 @@
                 
 
                             <div class="d-flex align-items-center">
-                                <form class="w-100 me-3" role="search">
-                                    <input id="buscar" type="search" class="form-control"
-                                        placeholder="Buscar productos..." aria-label="Search">
+                                <form action="<?=$_SERVER['PHP_SELF']?>" class="w-100 me-3" role="search" method="post">
+                                    <input id="buscar" name="buscar" type="search" class="form-control" placeholder="Buscar productos..." aria-label="Search">
+                                    <!-- <label for="txtBuscar">Nombre Producto</label>
+                                    <input type="text" name="txtBuscar" id="txtBuscar">
+                                    <input type="submit" name="btnBuscar" value="Buscar"> -->
                                 </form>
 
                                 <div class="flex-shrink-0 dropdown">
@@ -74,19 +76,9 @@
                         </div>
                     </header>
 
-                    <!-- Conexion y consulta con la BD y la tabla productos -->
-                    <?php
-                        // Accediendo al archivo conexion.php
-                        include "../../CONTROLADOR/Conexion.php";
-
-                        //Variable contenedora de la consulta a realizar
-                        $sql = "SELECT pkIdProducto, imagen, tipoImg, productos.nombre as producto, marca, precioVenta, fechaVencimiento, categoria.nombre as categoria, proveedores.nombre as proveedor FROM productos INNER JOIN categoria ON fkIdCategoria = pkIdCategoria INNER JOIN proveedores ON fkIdProveedor = pkIdProveedores ORDER BY pkIdProducto";
-
-                        $result = mysqli_query($conectar, $sql);
-                    ?>
-
                     <table style="width: 1650px;" class="table  text-center">
                         <button id="agregarProductosBtn" class="btn btn-success py-2 px-3 mb-4 mx-2">Agregar Productos</button>
+                        <a href="productos.php" type="button" class="btn btn-primary py-2 px-3 mb-4 mx-2">Mostrar todos los productos</a>
                         <thead class="table-primary">
                             <tr>
                                 <th scope="col">Código</th>
@@ -102,7 +94,52 @@
                         </thead>
                         <tbody>
                             <?php
-                                while($filas = mysqli_fetch_assoc($result)) {     
+                                // Accediendo al archivo conexion.php
+                                include "../../CONTROLADOR/Conexion.php";
+
+                                if (isset($_POST['buscar'])) {
+                                    //MOSTRAR BÚSQUEDA
+                                    $inputBuscar = $_POST['buscar'];
+
+                                    if (empty($inputBuscar)) {
+                                        echo "<script language='JavaScript'>
+                                                alert('Ingrese el nombre del producto a buscar');
+                                                location.assign('productos.php');
+                                              </script>";
+                                    } else {
+                                        $sql = "SELECT pkIdProducto, imagen, tipoImg, productos.nombre as producto, marca, precioVenta, fechaVencimiento, categoria.nombre as categoria, proveedores.nombre as proveedor FROM productos INNER JOIN categoria ON fkIdCategoria = pkIdCategoria INNER JOIN proveedores ON fkIdProveedor = pkIdProveedores WHERE productos.nombre like '%".$inputBuscar."%'";
+                                    }
+                                    
+                                    $result = mysqli_query($conectar, $sql);
+
+                                    while($filas = mysqli_fetch_assoc($result)) { 
+                            ?>
+                            <tr>
+                                <th scope="row"><?php echo $filas['pkIdProducto'];?></th>
+                                <td><img width = "80px" height = "80px" src="data:<?php echo $filas['tipoImg']?>;base64,<?php echo base64_encode($filas['imagen'])?>"></td>
+                                <td><?php echo $filas['producto']?></td>
+                                <td><?php echo $filas['marca']?></td>
+                                <td><?php echo $filas['precioVenta']?></td>
+                                <td><?php echo $filas['fechaVencimiento']?></td>
+                                <td><?php echo $filas['categoria']?></td>
+                                <td><?php echo $filas['proveedor']?></td>
+                                <td>
+                                    <?php echo "<a type='button' href='' class='btn btn-primary me-3'>+</a>"?>
+                                    <?php echo "<a type='button' id='updateProductbtn' href='../../CONTROLADOR/UpdateProducto.php?pkIdProducto=".$filas['pkIdProducto']."' class='btn btn-success me-3'>Editar</a>"?>
+                                    <?php echo "<a type='button' href='../../CONTROLADOR/DeleteProducto.php?pkIdProducto=".$filas['pkIdProducto']."' class='btn btn-danger' onclick='return confirmarDelete()'>Eliminar</a>"?>
+                                </td>
+                            </tr>
+                            <?php
+                                    }
+                                } else {
+                                    //MOSTRAR TODOS LOS ALUMNOS
+                                    // Conexion y consulta con la BD y la tabla productos
+                                    //Variable contenedora de la consulta a realizar
+                                    $sql = "SELECT pkIdProducto, imagen, tipoImg, productos.nombre as producto, marca, precioVenta, fechaVencimiento, categoria.nombre as categoria, proveedores.nombre as proveedor FROM productos INNER JOIN categoria ON fkIdCategoria = pkIdCategoria INNER JOIN proveedores ON fkIdProveedor = pkIdProveedores ORDER BY pkIdProducto";
+                                    
+                                    $result = mysqli_query($conectar, $sql);
+
+                                    while($filas = mysqli_fetch_assoc($result)) { 
                             ?>
                             <tr>
                                 <th scope="row"><?php echo $filas['pkIdProducto'];?></th>
@@ -121,6 +158,7 @@
                             </tr>
 
                             <?php
+                                    }
                                 }
                             ?>
                         </tbody>
