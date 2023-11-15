@@ -8,7 +8,16 @@
     <link rel="shortcut icon" href="imagenes/icon.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="scriptG.js"></script>
+    <script type="text/javascript">
+        function confirmarDelete() {
+            return confirm('¿Estas Seguro?, se eliminarán los datos');
+        }
+
+        function confirmarInsert() {
+            return confirm('¿Estas Seguro?, se guardarán los datos ingresados');
+        }
+    </script>
 </head>
 
 <body>
@@ -60,8 +69,8 @@
                         </div>
                     </header>
 
-                    <table style="width: 1650px;" class="table">
-                        <a href="insert.php"><button id="agregarGastosBtn" class="btn btn-success py-2 px-3 mb-4 mx-2">Registrar gastos</button></a>
+                    <table style="width: 1650px;" class="table text-center">
+                        <button id="agregarGastosBtn" class="btn btn-success py-2 px-3 mb-4 mx-2">Registrar gastos</button>
                         <thead class="table-primary">
                             <tr>
 
@@ -69,11 +78,10 @@
                                 <th scope="col">Fecha</th>
                                 <th scope="col">Monto</th>
                                 <th scope="col">Descripción</th>
-                                <th scope="col">Total</th>
                                 <th scope="col">Mètodo de pago</th>
+                                <th scope="col">Acciones</th>
+                                
 
-                                <th scope="col"></th>
-                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -82,10 +90,8 @@
                             require '../../CONTROLADOR/Conexion.php';
 
                             $consultar = "SELECT gastos.pkIdGasto, gastos.fecha, gastos.monto, gastos.descripcion,
-                                COALESCE(total, 'Ninguno') AS total,
                                 COALESCE(metodoPago, 'Ninguno') AS metodoPago
                                 FROM gastos 
-                                LEFT JOIN compras  ON gastos.fkIdCompra = compras.pkIdCompra
                                 LEFT JOIN pago  ON gastos.fkIdPago = pago.pkIdPago";
 
                             $query = mysqli_query($conectar, $consultar);
@@ -97,20 +103,74 @@
 
                                 <tr>
                                     <th> <?php echo $row['pkIdGasto'] ?> </th>
-                                    <th> <?php echo $row['fecha'] ?> </th>
-                                    <th> <?php echo $row['monto'] ?></th>
-                                    <th> <?php echo $row['descripcion'] ?></th>
-                                    <th> <?php echo $row['total'] ?></th>
-                                    <th> <?php echo $row['metodoPago'] ?></th>
+                                    <td> <?php echo $row['fecha'] ?> </td>
+                                    <td> <?php echo $row['monto'] ?></td>
+                                    <td> <?php echo $row['descripcion'] ?></td>
+                                    <td> <?php echo $row['metodoPago'] ?></td>
 
 
-                                    <th> <a href="" class="btn btn-success">Editar</a></th>
-                                    <th> <a href="" class="btn btn-danger">Eliminar</a></th>
+                                    <td> 
+                                    <?php echo "<a type= 'button' href='../../CONTROLADOR/updateGastos.php?pkIdGasto=".$row['pkIdGasto']." 'class='btn btn-success me-3'> Editar </a>" ?> 
+                                    
+                                    <?php echo "<a type= 'button' href='../../CONTROLADOR/deleteGastos.php?pkIdGasto=".$row['pkIdGasto']." 'class='btn btn-danger' onclick = 'return confirmarDelete()'> Eliminar </a>" ?> 
+                                    </td>
+
                                 </tr>
 
                                 <?php } ?>
                         </tbody>
+                        
                     </table>
+
+                    <div id="formularioAgregarGastos" class="formulario-agregar-productos">
+                        <h2>Registrar gasto</h2>
+                        <form action="../../CONTROLADOR/insertGastos.php" method="post">
+
+                            <label for="fecha">Fecha</label>
+                            <input type="date" id="fecha" name="fecha" class="form-control">
+
+                            <label for="monto">Monto</label>
+                            <input type="text" id="monto" name="monto" class="form-control">
+
+                            <label for="descripcion">Descripción</label>
+                            <input type="text" id="descripcion" name="descripcion" class="form-control">
+
+
+
+
+
+                            <?php
+
+                            $sqlConsulta ="SELECT pkIdPago, metodoPago FROM PAGO ORDER BY pkIdPago desc";
+
+                            $query = mysqli_query($conectar, $sqlConsulta);
+
+                            ?>
+
+
+
+
+                            <label for="pago">Pago</label>
+                            <select class="form-select" id="pago" name="pago" required>
+
+
+                                <option selected>Seleccione la método de pago</option>
+                                <?php 
+                                 while ($row = mysqli_fetch_assoc($query)) {
+                                ?>
+                                <option value="<?php echo $row['pkIdPago']?>"><?php echo $row['metodoPago']?></option>
+                                <?php }  
+                                // Cerrando la conexion con la base de datos
+                                mysqli_close($conectar);?>
+                            </select>   
+
+                        
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success">Agregar</button>
+                                <button class="btn btn-danger" id="cerrarFormulario">Cerrar</button>
+                            </div>
+                        </form>    
+                    </div>
 
 
 

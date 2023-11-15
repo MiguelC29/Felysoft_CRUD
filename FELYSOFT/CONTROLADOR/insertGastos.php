@@ -1,5 +1,5 @@
 <?php
-    require 'conexion.php';
+    require 'Conexion.php';
 
     //Recuperar las variables
     $fecha = $_POST["fecha"];
@@ -15,6 +15,6 @@
 
     //Verificar la conexión
     if($query) {
-        echo "<script> alert('El gasto se agregó correctamente.'); location.href='../VISTA/principal/gastos.html'; </script>'";
+        echo "<script> alert('El gasto se agregó correctamente.'); location.href='../VISTA/principal/gastos.php'; </script>'";
     }
 ?>
