@@ -48,7 +48,9 @@
                 $categoria = $_POST['categoria'];
                 $proveedor = $_POST['proveedor'];
 
-                $sql = "UPDATE productos SET nombre='".$nombProducto."',marca='".$marca."',precioVenta='".$precioV."',fechaVencimiento='".$fVencimiento."',fkIdCategoria='".$categoria."',fkIdProveedor='".$proveedor."',imagen='".$binariosImagen."',tipoImg='".$tipoArchivo."' WHERE pkIdProducto='".$pkIdProducto."'";
+                // $sql = "UPDATE productos SET nombre='".$nombProducto."',marca='".$marca."',precioVenta='".$precioV."',fechaVencimiento='".$fVencimiento."',fkIdCategoria='".$categoria."',fkIdProveedor='".$proveedor."',imagen='".$binariosImagen."',tipoImg='".$tipoArchivo."' WHERE pkIdProducto='".$pkIdProducto."'";
+
+                $sql = "UPDATE productos SET nombre = '$nombProducto', marca = '$marca', precioVenta = '$precioV', fechaVencimiento = '$fVencimiento', fkIdCategoria = '$categoria', fkIdProveedor = '$proveedor', imagen = '$binariosImagen', tipoImg = '$tipoArchivo' WHERE pkIdProducto = '$pkIdProducto'";
 
                 $result = mysqli_query($conectar, $sql);
 
@@ -67,7 +69,8 @@
         } else {
             //Aqui se entra si no se ha presionado el btn de actualizar
             $pkIdProducto = $_GET['pkIdProducto'];
-            $sql = "SELECT pkIdProducto, imagen, tipoImg, productos.nombre as producto, marca, precioVenta, fechaVencimiento, categoria.nombre as categoria, proveedores.nombre as proveedor FROM productos INNER JOIN categoria ON fkIdCategoria = pkIdCategoria INNER JOIN proveedores ON fkIdProveedor = pkIdProveedores WHERE pkIdProducto = '".$pkIdProducto."'";
+            $sql = "SELECT pkIdProducto, imagen, tipoImg, productos.nombre as producto, marca, precioVenta, fechaVencimiento, categoria.nombre as categoria, proveedores.nombre as proveedor FROM productos INNER JOIN categoria ON fkIdCategoria = pkIdCategoria INNER JOIN proveedores ON fkIdProveedor = pkIdProveedores WHERE pkIdProducto = '$pkIdProducto'";
+            
             $result = mysqli_query($conectar, $sql);
 
             $fila = mysqli_fetch_assoc($result);

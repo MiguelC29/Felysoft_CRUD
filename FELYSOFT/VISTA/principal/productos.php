@@ -76,7 +76,7 @@
                         </div>
                     </header>
 
-                    <table style="width: 1650px;" class="table  text-center">
+                    <table style="width: 1650px;" class="table text-center">
                         <button id="agregarProductosBtn" class="btn btn-success py-2 px-3 mb-4 mx-2">Agregar Productos</button>
                         <a href="productos.php" type="button" class="btn btn-primary py-2 px-3 mb-4 mx-2">Mostrar todos los productos</a>
                         <thead class="table-primary">
@@ -136,7 +136,7 @@
                             <?php
                                     }
                                 } else {
-                                    //MOSTRAR TODOS LOS ALUMNOS
+                                    //MOSTRAR TODOS LOS PRODUCTOS
                                     // Conexion y consulta con la BD y la tabla productos
                                     //Variable contenedora de la consulta a realizar
                                     $select = "SELECT pkIdProducto, imagen, tipoImg, productos.nombre as producto, marca, precioVenta, fechaVencimiento, categoria.nombre as categoria, proveedores.nombre as proveedor FROM productos INNER JOIN categoria ON fkIdCategoria = pkIdCategoria INNER JOIN proveedores ON fkIdProveedor = pkIdProveedores ORDER BY pkIdProducto LIMIT $offset, $registrosXPagina";
@@ -160,7 +160,7 @@
                                 <td><?php echo $filas['proveedor']?></td>
                                 <td>
                                     <?php echo "<a type='button' href='' class='btn btn-primary me-3'>+</a>"?>
-                                    <?php echo "<a type='button' id='updateProductbtn' href='../../CONTROLADOR/UpdateProducto.php?pkIdProducto=".$filas['pkIdProducto']."' class='btn btn-success me-3'>Editar</a>"?>
+                                    <?php echo "<a type='button' href='../../CONTROLADOR/UpdateProducto.php?pkIdProducto=".$filas['pkIdProducto']."' class='btn btn-success me-3'>Editar</a>"?>
                                     <?php echo "<a type='button' href='../../CONTROLADOR/DeleteProducto.php?pkIdProducto=".$filas['pkIdProducto']."' class='btn btn-danger' onclick='return confirmarDelete()'>Eliminar</a>"?>
                                 </td>
                             </tr>
