@@ -11,6 +11,6 @@
   $query= mysqli_query($conectar,$insert);
 
   if($query){
-    echo "<script> alert('El autor $nombreAutor se agregó correctamente.'); location.href='../VISTA/principal/libros.html'; </script>'";
+    echo "<script> alert('El autor $nombreAutor se agregó correctamente.'); location.href='../VISTA/principal/libros.php'; </script>'";
   }
 ?>
