@@ -29,12 +29,13 @@
                             Dashboard
                         </a>
                         <ul id="dropdownSide" class="dropdown-menu" aria-labelledby="dashboardDropdown">
-                            <li><a id="sideList" class="dropdown-item" href="productos.html">Productos</a></li>
+                            <li><a id="sideList" class="dropdown-item" href="productos.php">Productos</a></li>
                             <li><a id="sideList" class="dropdown-item" href="libros.php">Libros</a></li>
-                            <li><a id="sideList" class="dropdown-item" href="servicios.html">Servicios</a></li>
+                            <li><a id="sideList" class="dropdown-item" href="servicios.php">Servicios</a></li>
+                            <li><a id="sideList" class="dropdown-item" href="gastos.php">Gastos</a></li>
                         </ul>
                     </div>
-                    <a class="rounded" href="/principal/404.html">Estadísticas</a>
+                    <a class="rounded" href="404.html">Estadísticas</a>
                     <a class="rounded" href="#configuración">Configuración</a>
                     <img id="iconBar" class="icon" src="imagenes/icon.png" alt="">
                 </div>
@@ -52,7 +53,7 @@
                                     </a>
                                     <ul class="dropdown-menu text-small shadow">
                                         <li><a class="dropdown-item" href="#">Ajustes</a></li>
-                                        <li><a class="dropdown-item" href="/principal/500.html">Perfil</a></li>
+                                        <li><a class="dropdown-item" href="500.html">Perfil</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
