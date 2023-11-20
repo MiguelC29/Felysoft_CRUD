@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="sidebar">
-                    <a class="rounded" href="/prototipoFelysoft/principal/index.html">Venta</a>
+                    <a class="rounded" href="index.html">Venta</a>
                     <div class="dropdown">
                         <a class="rounded dropdown-toggle" href="#" role="button" id="dashboardDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             Dashboard
@@ -36,9 +36,10 @@
                         </ul>
                     </div>
                     <a class="rounded" href="404.html">Estadísticas</a>
-                    <a class="rounded" href="#configuración">Configuración</a>
+                    <a class="rounded" href="500.html">Configuración</a>
                     <img id="iconBar" class="icon" src="imagenes/icon.png" alt="">
                 </div>
+
                 <div class="content" style="width: 1200px;">
                     <header class="py-3 mb-3 border-bottom">
                         <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
@@ -57,7 +58,7 @@
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="/login/index.html">Salir</a></li>
+                                        <li><a class="dropdown-item" href="index.html">Salir</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -78,14 +79,13 @@
                                 <th scope="col">Autor</th>
                                 <th scope="col">Género</th>
                                 <th scope="col">Acciones</th>
-                                
                             </tr>
                         </thead>
                         <button id="mostrarFormuAutorbtn" class="btn btn-success py-2 px-3 mb-4 mx-2">Agregar Autor</button>
                         <tbody>
                             <?php 
-                             include '../../CONTROLADOR/Conexion.php';
-                             if (isset($_POST['buscar'])){
+                            include '../../CONTROLADOR/Conexion.php';
+                            if (isset($_POST['buscar'])){
                                 //Mostrar Busqueda 
                                 $inputBuscar= $_POST['buscar'];
                                 if (empty($inputBuscar)){
@@ -110,13 +110,14 @@
                                 <td><?php echo $row['Genero']?></td>
                                 <td>                                    
                                     <?php echo "<a type='button' id='updateLibrobtn' href='../../CONTROLADOR/updateLibro.php?pkIdLibro=".$row['pkIdLibro']."' class='btn btn-success me-3'>Editar</a>"?>
+
                                     <?php echo "<a type='button' href='../../CONTROLADOR/deleteLibro.php?pkIdLibro=".$row['pkIdLibro']."' class='btn btn-danger' onclick='return confirmarDelete()'>Eliminar</a>"?>
                                 </td>
                             </tr>
                             <?php
                                 }
-                            }else{ 
-                                   $select = "SELECT pkIdLibro, titulo, editorial, libros.descripcion as Descripcion, anioPublicacion, precioHora, autores.nombre as Autor, genero.nombre as Genero FROM libros INNER JOIN autores ON fkIdAutor = pkIdAutor INNER JOIN genero ON fkIdGenero = pkIdGenero ORDER BY pkIdLibro";
+                            } else{ 
+                                $select = "SELECT pkIdLibro, titulo, editorial, libros.descripcion as Descripcion, anioPublicacion, precioHora, autores.nombre as Autor, genero.nombre as Genero FROM libros INNER JOIN autores ON fkIdAutor = pkIdAutor INNER JOIN genero ON fkIdGenero = pkIdGenero ORDER BY pkIdLibro";
 
                                 $result = mysqli_query($conectar, $select);
 
@@ -137,6 +138,7 @@
                                 <td><?php echo $filas['Genero']?></td>
                                 <td>
                                     <?php echo "<a type='button' href='../../CONTROLADOR/updateLibro.php?pkIdLibro=".$filas['pkIdLibro']."' class='btn btn-success me-3'>Editar</a>"?>
+
                                     <?php echo "<a type='button' href='../../CONTROLADOR/deleteLibro.php?pkIdLibro=".$filas['pkIdLibro']."' class='btn btn-danger' onclick='return confirmarDelete()'>Eliminar</a>"?>
                                 </td>
                             </tr>
@@ -158,20 +160,20 @@
                                     <td><input type="text" id="titulo" name="titulo" class="form-control" require></td>
                                     <th class="ps-4"><label for="editorial">Editorial</label></th>
                                     <td><input type="text" id="editorial" name="editorial" class="form-control" require></td>
-                                 </tr>
+                                </tr>
                                 <tr>
                                     <th><label for="precio">Precio (COP)</label></th>
                                     <td><input type="text" id="precio" name="precio" class="form-control"></td>
                                                                       
                                     <th class="ps-4"><label for="anioPublicacion">Año Publicación</label></th>
                                     <td><input type="text" id="anioPublicacion" name="anioPublicacion"  class="form-control"></td>
-                                 </tr>    
-                                 <tr>
+                                </tr>    
+                                <tr>
                                     <th><label for="Descripcion">Descripcion</label></th>
                                     <td colspan="3"><textarea cols="30" type="text" id="Descripcion" name="Descripcion" class="form-control" required style="resize: none;"></textarea></td>
                                 </tr>  
                                 <tr>
-                                <?php
+                                    <?php
                                         //Variable contenedora de la consulta a realizar
                                         $sqlA = "SELECT pkIdAutor, nombre FROM autores ORDER BY nombre";
 
@@ -195,26 +197,28 @@
                                         $result = mysqli_query($conectar, $sqlG);
                                     ?>
 
-                                        <th class="ps-4"><label for="genero">Género</label></th>    
-                                        <td><select  id="genero" name="genero"  class="form-select" required>
+                                    <th class="ps-4"><label for="genero">Género</label></th>    
+                                    <td>
+                                        <select  id="genero" name="genero"  class="form-select" required>
                                         <option selected>Seleccione el Genero</option>
                                         <?php while($row = mysqli_fetch_assoc($result)) { ?>
                                         <option value="<?php echo $row['pkIdGenero']?>"><?php echo $row['nombre']?></option>
                                         <?php
                                             }
                                         ?>
-                                    </select></td>
-                                 </tr> 
-                                </tbody>
-                                </table>
-                                <?php
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                            <?php
                                 // Cerrando la conexion con la base de datos
                                 mysqli_close($conectar);
                             ?>
                             <div class="text-center py-3"> 
-                            <button type="submit" class="btn btn-success me-3" id="btnAgregar" name="btnAgregar" onclick='return confirmarInsert()'>Agregar</button>
-                            <button id="cerrarFormularioL" class="btn btn-danger">Cerrar</button></div>
-                           
+                                <button type="submit" class="btn btn-success me-3" id="btnAgregar" name="btnAgregar" onclick='return confirmarInsert()'>Agregar</button>
+                                <button id="cerrarFormularioL" class="btn btn-danger">Cerrar</button>
+                            </div>
                         </form>
                     </div>
 

@@ -1,7 +1,7 @@
 <?php
   require 'Conexion.php';
- ?>
- <!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
@@ -46,7 +46,7 @@
                     location.assign('../VISTA/principal/libros.php');
                 </script>";
         }
-     }else {
+    } else {
         $pkIdLibro = $_GET['pkIdLibro'];
         $select = "SELECT pkIdLibro, titulo, editorial, libros.descripcion as Descripcion, anioPublicacion, precioHora, autores.nombre as Autor, genero.nombre as Genero FROM libros INNER JOIN autores ON fkIdAutor = pkIdAutor INNER JOIN genero ON fkIdGenero = pkIdGenero  WHERE pkIdLibro = '".$pkIdLibro."'";
 
@@ -60,7 +60,7 @@
         $precioHora = $row['precioHora'];
         $autor = $row['Autor'];
         $genero = $row['Genero'];
-        ?>
+    ?>
         <div id="formUpdateLibro" class="formulario-agregar-productos">
         <h2 class="text-center py-3">Editar Libro</h2>
         
@@ -88,7 +88,6 @@
                     <?php
                         //Variable contenedora de la consulta a realizar
                         $sqlA = "SELECT pkIdAutor, nombre FROM autores ORDER BY nombre";
-
                         $result = mysqli_query($conectar, $sqlA);
                     ?>
                     <th><label for="autor">Autor</label></th>
@@ -107,7 +106,6 @@
 
                         $result = mysqli_query($conectar, $sqlG);
                     ?>
-
                         <th class="ps-4"><label for="genero">Género</label></th>    
                         <td><select  id="genero" name="genero"  class="form-select" require>
                         <option selected><?php echo $genero?></option>

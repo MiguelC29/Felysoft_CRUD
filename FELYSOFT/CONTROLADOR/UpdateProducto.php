@@ -81,8 +81,6 @@
             $fVencimiento = $fila['fechaVencimiento'];
             $categoria = $fila['categoria'];
             $proveedor = $fila['proveedor'];
-
-            // mysqli_close($conectar);
     ?>
 
     <div id="formUpdateProduct" class="formulario-agregar-productos">

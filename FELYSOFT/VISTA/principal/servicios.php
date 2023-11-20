@@ -1,10 +1,6 @@
 <?php
-    $host = "localhost";
-    $user = "root";
-    $clave = "";
-    $bd = "db_felysoft";
-
-    $conectar = mysqli_connect($host, $user, $clave, $bd);
+    // Accediendo al archivo conexion.php
+    include "../../CONTROLADOR/Conexion.php";
 
     $registrosPorPagina = 10;
     $paginaActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
@@ -52,7 +48,7 @@
                         </ul>
                     </div>
                     <a class="rounded" href="404.html">Estadísticas</a>
-                    <a class="rounded" href="#configuración">Configuración</a>
+                    <a class="rounded" href="500.html">Configuración</a>
                     <img id="iconBar" class="icon" src="imagenes/icon.png" alt="">
                 </div>
                 <div class="content" style="width: 1200px;">
@@ -99,7 +95,9 @@
                                 echo "<td>" . $columna['nombre'] . "</td>";
                                 echo "<td>" . $columna['descripcion'] . "</td>";
                                 echo "<td>" . $columna['precio'] . "</td>";
+
                                 echo "<td><a href='/Felysoft/FELYSOFT/CONTROLADOR/updateServicio.php?id=" . $columna['idTipoServicio'] . "'><button type='button' class='btn btn-success'>Editar</button></a>    
+
                                 <a href='/Felysoft/FELYSOFT/CONTROLADOR/deleteServicios.php?id=" . $columna['idTipoServicio'] . "'><button type='button' class='btn btn-danger' onclick='return confirmar()'>Eliminar</button></a>
                                 </td>";
                                 echo "<td></td>";
@@ -130,25 +128,25 @@
                             <div class="form-floating mb-3">
                                 <input type="text" id="floatingInput" name="nombre" class="form-control" placeholder="nombre" required>
                                 <label for="floatingInput">Nombre Servicio</label>
-                                    <div class="invalid-feedback text-light pb-2 ms-3">
-                                        Por favor ingresa el nombre del nuevo servicio.
-                                    </div>
+                                <div class="invalid-feedback text-light pb-2 ms-3">
+                                    Por favor ingresa el nombre del nuevo servicio.
+                                </div>
                             </div>             
 
                             <div class="form-floating">
                                 <input type="text" id="descripcion" name="descripcion" class="form-control" placeholder="descripcion" required>
                                 <label for="descripcion">Descripción</label>
-                                    <div class="invalid-feedback text-light pb-2 ms-3">
-                                        Por favor ingresa la descripción del nuevo servicio.
-                                    </div>
+                                <div class="invalid-feedback text-light pb-2 ms-3">
+                                    Por favor ingresa la descripción del nuevo servicio.
+                                </div>
                             </div>
                             
                             <div class="form-floating">
                                 <input type="text" id="precio" name="precio" class="form-control" placeholder="precio" required>
                                 <label for="precio">Precio (COP)</label>
-                                    <div class="invalid-feedback text-light pb-2 ms-3">
-                                        Por favor ingresa el precio del nuevo servicio.
-                                    </div>
+                                <div class="invalid-feedback text-light pb-2 ms-3">
+                                    Por favor ingresa el precio del nuevo servicio.
+                                </div>
                             </div>
                             
                             <div class="text-center">

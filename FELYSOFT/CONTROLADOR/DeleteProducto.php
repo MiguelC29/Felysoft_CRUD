@@ -1,6 +1,6 @@
 <?php
-  $pkIdProducto = $_GET['pkIdProducto'];
   require "Conexion.php";
+  $pkIdProducto = $_GET['pkIdProducto'];
 
   $sql = "DELETE FROM productos WHERE pkIdProducto = '$pkIdProducto'";
   $result = mysqli_query($conectar, $sql);

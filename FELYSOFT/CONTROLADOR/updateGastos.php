@@ -1,7 +1,6 @@
 <?php
-require "Conexion.php";
+    require "Conexion.php";
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -23,60 +22,50 @@ require "Conexion.php";
 
 <body>
     <?php
-    if (isset($_POST["updateGasto"])) {   //AQUI SE ENTRA CUANDO SE PRECIONA EL BOTÓN ACTUALIZAR
- 
-        $pkIdGasto = $_POST["pkIdGasto"];
-        $fecha = $_POST["fecha"];
-        $monto = $_POST["monto"];
-        $descripcion = $_POST["descripcion"];
-        $pago = $_POST["pago"];
+        if (isset($_POST["updateGasto"])) {   //AQUI SE ENTRA CUANDO SE PRECIONA EL BOTÓN ACTUALIZAR
+    
+            $pkIdGasto = $_POST["pkIdGasto"];
+            $fecha = $_POST["fecha"];
+            $monto = $_POST["monto"];
+            $descripcion = $_POST["descripcion"];
+            $pago = $_POST["pago"];
 
-        $update = "UPDATE gastos SET fecha = '$fecha', monto = '$monto', descripcion = '$descripcion', fkIdPago = '$pago' 
-        WHERE pkIdGasto ='$pkIdGasto' ";
+            $update = "UPDATE gastos SET fecha = '$fecha', monto = '$monto', descripcion = '$descripcion', fkIdPago = '$pago' 
+            WHERE pkIdGasto ='$pkIdGasto' ";
 
-        $result = mysqli_query($conectar, $update);
-                                              
+            $result = mysqli_query($conectar, $update);
 
-        if ($result) {
-            echo "<script language='JavaScript'>
-                    alert('Los datos se actualizaron correctamente');
-                    location.assign('../VISTA/principal/Gastos.php');
-                </script>";
-        } else {
-            echo "<script language='JavaScript'>
-                    alert('Los datos NO se actualizaron');
-                    location.assign('../VISTA/principal/Gastos.php');
-                </script>";
+            if ($result) {
+                echo "<script language='JavaScript'>
+                        alert('Los datos se actualizaron correctamente');
+                        location.assign('../VISTA/principal/Gastos.php');
+                    </script>";
+            } else {
+                echo "<script language='JavaScript'>
+                        alert('Los datos NO se actualizaron');
+                        location.assign('../VISTA/principal/Gastos.php');
+                    </script>";
+            }
+        } else { //AQUI SE ENTRA CUANDO NO SE HA PRECIONADO EL BOTON ACTUIALIZAR
+            $pkIdGasto = $_GET["pkIdGasto"];
+
+            $consultar = "SELECT pkIdGasto, fecha, monto, descripcion,
+            COALESCE(metodoPago, 'Ninguno') AS metodoPago
+            FROM gastos 
+            LEFT JOIN pago  ON gastos.fkIdPago = pago.pkIdPago WHERE pkIdGasto = $pkIdGasto ";
+
+            $query = mysqli_query($conectar, $consultar);
+
+            $fila = mysqli_fetch_assoc($query);
+
+            $fecha = $fila["fecha"];
+            $monto = $fila["monto"];
+            $descripcion = $fila["descripcion"];
+            $pago = $fila["metodoPago"];
+            
         }
-    }
-    else{ //AQUI SE ENTRA CUANDO NO SE HA PRECIONADO EL BOTON ACTUIALIZAR
-
-
-        $pkIdGasto = $_GET["pkIdGasto"];
-
-        $consultar = "SELECT pkIdGasto, fecha, monto, descripcion,
-        COALESCE(metodoPago, 'Ninguno') AS metodoPago
-        FROM gastos 
-        LEFT JOIN pago  ON gastos.fkIdPago = pago.pkIdPago WHERE pkIdGasto = $pkIdGasto ";
-
-        $query = mysqli_query($conectar, $consultar);
-
-        $fila = mysqli_fetch_assoc($query);
-
-        
-        $fecha = $fila["fecha"];
-        $monto = $fila["monto"];
-        $descripcion = $fila["descripcion"];
-        $pago = $fila["metodoPago"];
-        
-
-
-    }
-
-
     ?>
-
-<div id="formUpdateGasto" class="formulario-agregar-productos">
+    <div id="formUpdateGasto" class="formulario-agregar-productos">
         <h2 class="text-center py-3">Editar Gasto</h2>
         <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
             <table style="width: 830px;">
@@ -97,19 +86,11 @@ require "Conexion.php";
                         <td><input type="text" id="descripcion" name="descripcion" class="form-control" value="<?php echo $descripcion?>" required></td>
                     </tr>
                         
-
-
                     <tr>
-                        
                     <?php
-
                         $sqlConsulta ="SELECT pkIdPago, metodoPago FROM PAGO ORDER BY pkIdPago desc";
-
                         $query = mysqli_query($conectar, $sqlConsulta);
-
                     ?>
-
-
 
                         <th><label for="pago">Pago</label></th>
                         <td>
@@ -120,9 +101,8 @@ require "Conexion.php";
                             <?php
                                 }
                             ?>
-
-                            </select></td> 
-                        
+                            </select>
+                        </td>
                     </tr>
                     
                 </tbody>
@@ -139,4 +119,6 @@ require "Conexion.php";
             </div>
         </form>
     </div>
+
 </body>
+<html>
